@@ -1,5 +1,5 @@
 // require for stored twitter keys
-var twitterKeys = require("./keys.js");
+var twitterKeys = require("./twitterKeys.js");
 
 // test export and access of key data -- WORKS
 // console.log(twitterKeys.consumer_key);

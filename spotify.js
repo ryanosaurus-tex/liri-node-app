@@ -7,7 +7,7 @@ SpotifyThis = function(modifier){
 		secret: spotifyKeys.secret
 	}); 
 	
-	spotify.search({ type: 'track', query: modifier, limit: 3 }, function(err, data) {
+	spotify.search({ type: 'track', query: modifier, limit: 5 }, function(err, data) {
   			if (err) {
     			return console.log('Error occurred: ' + err);
   			}
@@ -19,7 +19,7 @@ SpotifyThis = function(modifier){
 
   				var displayArtists = function(){
   					for ( var j = 0 ; j < searchResults[i].artists.length ; j++ ){
-  						return searchResults[i].artists[j].name + ", ";
+  						return searchResults[i].artists[j].name;
   					}
   				};
 

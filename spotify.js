@@ -17,7 +17,7 @@ SpotifyThis = function(modifier){
 
   			for ( var i = 0 ; i < searchResults.length ; i++ ){
 
-  				var displayArtists = function(){
+  				var displayArt ists = function(){
   					for ( var j = 0 ; j < searchResults[i].artists.length ; j++ ){
   						return searchResults[i].artists[j].name;
   					}

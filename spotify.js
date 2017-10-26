@@ -7,33 +7,49 @@ SpotifyThis = function(modifier){
 		secret: spotifyKeys.secret
 	}); 
 	
+
+
 	spotify.search({ type: 'track', query: modifier, limit: 5 }, function(err, data) {
   			if (err) {
     			return console.log('Error occurred: ' + err);
-  			}
+  			};
+        
+  			var searchResultsArray = data.tracks.items;
+        
+  			for ( i = 0 ; i < searchResultsArray.length ; i++ ){
 
-  			var searchResults = data.tracks.items;
+          displayURL = function(){
+            if ( searchResultsArray[i].preview_url === null ){
+              return "No Preview Available.";
+            } else {
+              return searchResultsArray[i].preview_url;
+            }
+          };
 
+          displayArtists = function(){
 
-  			for ( var i = 0 ; i < searchResults.length ; i++ ){
+            var artists = " ";
+            var x = 0;          
 
-  				var displayArt ists = function(){
-  					for ( var j = 0 ; j < searchResults[i].artists.length ; j++ ){
-  						return searchResults[i].artists[j].name;
-  					}
-  				};
+            while ( x < searchResultsArray[i].artists.length ){
+              artists += searchResultsArray[i].artists[x].name + ", ";
+              if ( x = searchResultsArray[i].artists.length - 1){
+                artists += searchResultsArray[i].artists[x].name;
+              }
+              x++;
+            }
 
-  				console.log("\nResult #" + (i + 1) + " ---------------------" +
-  					        "\nArtists: " + displayArtists() +
-  					        "\nTrack Name: " + searchResults[i].name +
-  					        "\nAlbum Name: " + searchResults[i].album.name +
-  					        "\nPreview URL: " + searchResults[i].preview_url + "\n");
-  			}
- 
-			 
+            return artists
+          };      
+
+    			console.log("\nResult #" + (i + 1) + " ---------------------");          
+          console.log("Artists: " + displayArtists());
+          console.log("Track Name: " + searchResultsArray[i].name);
+          console.log("Album Name: " + searchResultsArray[i].album.name);
+          console.log("Preview URL: " + displayURL());    					        
+    			
+  			}			 
 		});
-	
-
 };
 
 module.exports = SpotifyThis;

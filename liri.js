@@ -5,6 +5,7 @@ var omdbByID = require('./omdbByID.js');
 
 var command = process.argv[2];
 var modifier = process.argv[3];
+var myMovieSearch = new omdbByID();
 
 if ( command.toLowerCase() === 'my-tweets' ){
 	showTweets();
@@ -15,5 +16,7 @@ else if ( command.toLowerCase() === 'spotify-this-song'){
 }
 
 else if ( command.toLowerCase() === 'movie-this'){
-	omdbByID(modifier);
+	myMovieSearch.NEWomdbSearch(modifier);
+
+
 }
